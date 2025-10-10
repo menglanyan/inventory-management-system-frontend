@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import ApiService from "../service/ApiService";
+import ApiService from "../../service/ApiService";
 
 const logout = () => {
   ApiService.logout();
