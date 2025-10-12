@@ -7,6 +7,10 @@ import SupplierPage from "./components/pages/SupplierPage";
 import AddEditSupplierPage from "./components/pages/AddEditSupplierPage";
 import ProductPage from "./components/pages/ProductPage";
 import AddEditProductPage from "./components/pages/AddEditProductPage";
+import PurchasePage from "./components/pages/PurchasePage";
+import SellPage from "./components/pages/SellPage";
+import TransactionsPage from "./components/pages/TransactionsPage";
+import TransactionDetailsPage from "./components/pages/TransactionDetailsPage";
 import DashboardPage from "./components/pages/DashboardPage";
 
 
@@ -34,6 +38,20 @@ function App() {
           <Route path="/product" element={<AdminRoute element={<ProductPage />} />} />
           <Route path="/add-product" element={<AdminRoute element={<AddEditProductPage />} />} />
           <Route path="/edit-product/:productId" element={<AdminRoute element={<AddEditProductPage />} />} />
+
+
+          {/* ADMIN AND MANAGER ROUTES */}
+          <Route path="/purchase" element={<ProtectedRoute element={<PurchasePage />} />} />
+          <Route path="/sell" element={<ProtectedRoute element={<SellPage />} />} />
+          <Route path="/transaction" element={<ProtectedRoute element={<TransactionsPage />} />} />
+          <Route path="/transaction/:transactionId" element={<ProtectedRoute element={<TransactionDetailsPage />} />} />
+
+
+          
+
+
+
+
 
         
 
