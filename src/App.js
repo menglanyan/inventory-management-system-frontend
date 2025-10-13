@@ -11,6 +11,7 @@ import PurchasePage from "./components/pages/PurchasePage";
 import SellPage from "./components/pages/SellPage";
 import TransactionsPage from "./components/pages/TransactionsPage";
 import TransactionDetailsPage from "./components/pages/TransactionDetailsPage";
+import ProfilePage from "./components/pages/ProfilePage";
 import DashboardPage from "./components/pages/DashboardPage";
 
 
@@ -21,7 +22,6 @@ function App() {
 
   return (
     <BrowserRouter>
-
 
         <Routes>
           
@@ -45,21 +45,14 @@ function App() {
           <Route path="/sell" element={<ProtectedRoute element={<SellPage />} />} />
           <Route path="/transaction" element={<ProtectedRoute element={<TransactionsPage />} />} />
           <Route path="/transaction/:transactionId" element={<ProtectedRoute element={<TransactionDetailsPage />} />} />
+          <Route path="/profile" element={<ProtectedRoute element={<ProfilePage />} />} />
+          <Route path="/dashboard" element={<ProtectedRoute element={<DashboardPage />} />} />
 
 
+          <Route path="*" element={<LoginPage />} />
           
-
-
-
-
-
-        
-
-          
- 
         </Routes>
 
-    
     </BrowserRouter>
   )
 
