@@ -1,70 +1,114 @@
-# Getting Started with Create React App
+# 📦 Inventory Management System — Fullstack (Spring Boot + React + MySQL)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack web application for managing inventory, suppliers, and transactions with dynamic data visualization.  
+The system features a **secure backend built with Spring Boot** and a **modern frontend built with React**, connected through a well-structured REST API and backed by a **MySQL database**.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🧠 Project Overview
 
-### `npm start`
+### 🧩 Backend — Powered by Spring Boot
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**🔹 Database Architecture**  
+Built a structured MySQL schema to manage relationships between products, suppliers, users, and transactions.   
+Implemented one-to-many and many-to-many mappings to ensure data consistency and efficient queries.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**🔹 RESTful API Development**  
+Developed modular endpoints for all major entities with full CRUD capabilities.   
+Integrated pagination and sorting logic in backend queries to handle large data sets effectively.
 
-### `npm test`
+**🔹 Filtering System**  
+Implemented **Spring Data JPA Specifications** for advanced filtering, providing flexible, dynamic search and filtering for transactions.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**🔹 Security and Authentication**  
+Configured **Spring Security** and **JWT** to secure the API.   
+All protected routes require valid tokens, and role-based access ensures only authorized users can perform sensitive operations.
 
-### `npm run build`
+**🔹 User Roles and Access Control**  
+Defined separate user roles (Admin, Manager) with specific privileges, ensuring proper access hierarchy for business operations.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 🎨 Frontend — Built with React
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**🔹 Dashboard Design**  
+Developed a user-friendly and responsive React interface featuring role-specific dashboards for managing products, suppliers, and transactions.
 
-### `npm run eject`
+**🔹 Data Visualization**  
+Used **Recharts** to display real-time insights, such as transaction counts, product quantities, and revenue summaries.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+**🔹 API Communication**  
+Connected the frontend and backend seamlessly with **Axios**, ensuring reliable data synchronization and JWT-based request handling.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🚀 Features
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 👤 User Management
+- Register and log in using **JWT authentication**
+- Role-based access control (**Admin**, **Manager**)
+- Secure password hashing with Spring Security
 
-## Learn More
+### 🧾 Inventory & Transaction Management
+- Add, update, and delete **categories**, **products** and **suppliers**
+- Record **purchases**, **sales**, and **returns**
+- Automatically update product stock quantities after transactions
+- Track all transactions with timestamps and statuses
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 📊 Reporting & Filtering
+- Paginated and filtered transaction history
+- View monthly reports and analytics by date range
+- Visual summaries for total transactions, quantity and amount flow
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 🖥️ Frontend Overview
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 💻 Tech Stack
+| Area | Technology |
+|------|-------------|
+| **Language** | JavaScript, HTML, CSS |
+| **Framework** | React 19 |
+| **Routing** | React Router DOM |
+| **HTTP Client** | Axios |
+| **Data Visualization** | Recharts |
+| **State Management** | React Hooks (`useState`, `useEffect`) |
+| **Build Tool** | Create React App |
 
-### Analyzing the Bundle Size
+### 🧩 Core Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### 🔐 Authentication & Authorization
+- Role-aware interface: menus and routes render conditionally based on role (**ADMIN** / **MANAGER**).
+- Axios interceptor automatically attaches  
+  `Authorization: Bearer <token>` to authenticated requests.
+- Automatic logout on token expiration or invalid credentials.
 
-### Making a Progressive Web App
+### 🧭 Routing
+- **Public Routes:** Login, Register  
+- **Private Routes:** Dashboard, Transactions, Category, Product, Supplier, Purchase, Sell, Profile  
+- Route guards redirect unauthenticated users to `/login`.
+- Role-based route control prevents unauthorized access to protected pages.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 📊 Dashboard & Analytics
+- Displays **monthly and weekly charts** for:
+  - Total transactions count  
+  - Product quantities  
+  - Total sales amounts  
+- Built with **Recharts** for smooth, responsive visualizations.
 
-### Advanced Configuration
+### 🏷️ Inventory Management
+- Full **CRUD operations** for:
+  - Categories  
+  - Products  
+  - Suppliers  
+- Product image upload supported via **multipart/form-data** with live preview using `FileReader`.
+- Real-time stock updates synchronized with backend.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### 💰 Transactions
+- Paginated transaction tables with keyword filtering (delegated to backend specifications).
+- View transaction details and edit status seamlessly.
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 🔗 Backend Repository
+**👉 [inventory-management-system-backend](https://github.com/menglanyan/inventory-management-system-backend)**
