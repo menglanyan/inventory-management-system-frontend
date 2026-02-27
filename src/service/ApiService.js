@@ -4,6 +4,10 @@ export default class ApiService {
 
   static BASE_URL = "http://localhost:5050/api";
 
+  static generateIdempotencyKey() {
+    return crypto.randomUUID();
+  }
+
   static saveToken(token) {
     localStorage.setItem("token", token);
   }
@@ -254,28 +258,55 @@ export default class ApiService {
 
   /** TRANSACTION ENDPOINT */
   static async purchaseProduct(transactionData) {
+
+    const idempotencyKey = this.generateIdempotencyKey();
     
-    const response = await axios.post(`${this.BASE_URL}/transactions/purchase`, transactionData, {
-      headers: this.getHeader()
-    });
+    const response = await axios.post(
+      `${this.BASE_URL}/transactions/purchase`,
+      transactionData,
+      {
+        headers: {
+          ...this.getHeader(),
+          "Idempotency-Key": idempotencyKey
+        }
+      }
+    );
 
     return response.data;
   }
 
   static async sellProduct(transactionData) {
+
+    const idempotencyKey = this.generateIdempotencyKey();
     
-    const response = await axios.post(`${this.BASE_URL}/transactions/sell`, transactionData, {
-      headers: this.getHeader()
-    });
+    const response = await axios.post(
+      `${this.BASE_URL}/transactions/sell`,
+      transactionData,
+      {
+        headers: {
+          ...this.getHeader(),
+          "Idempotency-Key": idempotencyKey
+        }
+      }
+    );
 
     return response.data;
   }
 
   static async returnToSupplier(transactionData) {
+
+    const idempotencyKey = this.generateIdempotencyKey();
     
-    const response = await axios.post(`${this.BASE_URL}/transactions/return`, transactionData, {
-      headers: this.getHeader()
-    });
+    const response = await axios.post(
+      `${this.BASE_URL}/transactions/return`,
+      transactionData,
+      {
+        headers: {
+          ...this.getHeader(),
+          "Idempotency-Key": idempotencyKey
+        }
+      }
+    );
 
     return response.data;
   }
