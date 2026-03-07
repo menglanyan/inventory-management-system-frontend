@@ -3,7 +3,7 @@ import axios from "axios";
 export default class ApiService {
 
   // static BASE_URL = "http://localhost:5050/api";
-  static BASE_URL = "https://inventory-api.menglanyan.dev";
+  static BASE_URL = "https://inventory-api.menglanyan.dev/api";
 
   static generateIdempotencyKey() {
     return crypto.randomUUID();
