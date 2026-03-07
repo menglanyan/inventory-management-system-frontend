@@ -188,7 +188,7 @@ const AddEditProductPage  = () => {
             <label>Product Image</label>
             <input type="file" onChange={handleImageChange} />
             {imageUrl && (
-              <img src={imageUrl} alt="image" className="image-preview" />
+              <img src={imageUrl} alt="product preview" className="image-preview" />
             )}
           </div>
 
