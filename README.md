@@ -1,114 +1,104 @@
-# 📦 Inventory Management System — Fullstack (Spring Boot + React + MySQL)
+# Inventory Management Frontend  
+### React Client for Inventory System
 
-A full-stack web application for managing inventory, suppliers, and transactions with dynamic data visualization.  
-The system features a **secure backend built with Spring Boot** and a **modern frontend built with React**, connected through a well-structured REST API and backed by a **MySQL database**.
+A React-based frontend for the Inventory Management System.
 
----
+**Core value**:  
+This application provides a clean and responsive interface for managing products, suppliers and stock transactions. It integrates with a Spring Boot backend and focuses on usability, data handling, and real-time interaction with REST APIs.
 
-## 🧠 Project Overview
+**Live App**:  
+https://inventory.menglanyan.dev  
 
-### 🧩 Backend — Powered by Spring Boot
+**Live Backend Swagger UI**:  
+https://inventory-api.menglanyan.dev/swagger-ui/index.html  
 
-**🔹 Database Architecture**  
-Built a structured MySQL schema to manage relationships between products, suppliers, users, and transactions.   
-Implemented one-to-many and many-to-many mappings to ensure data consistency and efficient queries.
-
-**🔹 RESTful API Development**  
-Developed modular endpoints for all major entities with full CRUD capabilities.   
-Integrated pagination and sorting logic in backend queries to handle large data sets effectively.
-
-**🔹 Filtering System**  
-Implemented **Spring Data JPA Specifications** for advanced filtering, providing flexible, dynamic search and filtering for transactions.
-
-**🔹 Security and Authentication**  
-Configured **Spring Security** and **JWT** to secure the API.   
-All protected routes require valid tokens, and role-based access ensures only authorized users can perform sensitive operations.
-
-**🔹 User Roles and Access Control**  
-Defined separate user roles (Admin, Manager) with specific privileges, ensuring proper access hierarchy for business operations.
+**Backend Repository**:  
+https://github.com/menglanyan/inventory-management-system-backend  
 
 ---
 
-### 🎨 Frontend — Built with React
+## Application Overview
 
-**🔹 Dashboard Design**  
-Developed a user-friendly and responsive React interface featuring role-specific dashboards for managing products, suppliers, and transactions.
+```mermaid
+graph LR
+  User((User)) --> Vercel
+  CI[GitHub Actions] -- CD --> EC2
 
-**🔹 Data Visualization**  
-Used **Recharts** to display real-time insights, such as transaction counts, product quantities, and revenue summaries.
+  subgraph Vercel_Cloud [Vercel Platform]
+    Vercel[React Frontend]
+  end
 
-**🔹 API Communication**  
-Connected the frontend and backend seamlessly with **Axios**, ensuring reliable data synchronization and JWT-based request handling.
+  subgraph AWS_Cloud [AWS Cloud]
+    subgraph EC2 [EC2 Instance]
+      direction TB
+      Nginx{Nginx}
+      Spring[Spring Boot App in Docker]
+      DB[(MySQL)]
 
----
+      Nginx -->|Auth & Route| Spring
+      Spring --> DB
+    end
+  end
 
-## 🚀 Features
-
-### 👤 User Management
-- Register and log in using **JWT authentication**
-- Role-based access control (**Admin**, **Manager**)
-- Secure password hashing with Spring Security
-
-### 🧾 Inventory & Transaction Management
-- Add, update, and delete **categories**, **products** and **suppliers**
-- Record **purchases**, **sales**, and **returns**
-- Automatically update product stock quantities after transactions
-- Track all transactions with timestamps and statuses
-
-### 📊 Reporting & Filtering
-- Paginated and filtered transaction history
-- View monthly reports and analytics by date range
-- Visual summaries for total transactions, quantity and amount flow
+  Vercel_Cloud ==>|HTTPS Request| Nginx
+```
+- **Client application**: Built with React and deployed on Vercel  
+- **API communication**: Axios-based requests to backend REST APIs  
+- **Authentication**: JWT stored and attached to protected requests  
 
 ---
 
-## 🖥️ Frontend Overview
+## Tech Stack
 
-### 💻 Tech Stack
-| Area | Technology |
-|------|-------------|
-| **Language** | JavaScript, HTML, CSS |
-| **Framework** | React 19 |
-| **Routing** | React Router DOM |
-| **HTTP Client** | Axios |
-| **Data Visualization** | Recharts |
-| **State Management** | React Hooks (`useState`, `useEffect`) |
-| **Build Tool** | Create React App |
-
-### 🧩 Core Features
-
-#### 🔐 Authentication & Authorization
-- Role-aware interface: menus and routes render conditionally based on role (**ADMIN** / **MANAGER**).
-- Axios interceptor automatically attaches  
-  `Authorization: Bearer <token>` to authenticated requests.
-- Automatic logout on token expiration or invalid credentials.
-
-### 🧭 Routing
-- **Public Routes:** Login, Register  
-- **Private Routes:** Dashboard, Transactions, Category, Product, Supplier, Purchase, Sell, Profile  
-- Route guards redirect unauthenticated users to `/login`.
-- Role-based route control prevents unauthorized access to protected pages.
-
-### 📊 Dashboard & Analytics
-- Displays **monthly and weekly charts** for:
-  - Total transactions count  
-  - Product quantities  
-  - Total sales amounts  
-- Built with **Recharts** for smooth, responsive visualizations.
-
-### 🏷️ Inventory Management
-- Full **CRUD operations** for:
-  - Categories  
-  - Products  
-  - Suppliers  
-- Product image upload supported via **multipart/form-data** with live preview using `FileReader`.
-- Real-time stock updates synchronized with backend.
-
-### 💰 Transactions
-- Paginated transaction tables with keyword filtering (delegated to backend specifications).
-- View transaction details and edit status seamlessly.
+- React  
+- Axios
+- React Hooks
+- React Router
 
 ---
 
-### 🔗 Backend Repository
-**👉 [inventory-management-system-backend](https://github.com/menglanyan/inventory-management-system-backend)**
+## Key Features
+
+- Product, supplier and category management  
+- Stock transaction workflows (purchase, sale, return)  
+- Pagination and filtering for large datasets  
+- Role-based UI (Admin / Manager views)  
+- Image upload and preview for products  
+
+---
+
+## Integration with Backend
+
+This frontend interacts with a backend API that provides:
+
+- JWT-based authentication  
+- role-based access control  
+- transactional inventory handling  
+- idempotent transaction processing  
+
+All data is fetched from the backend via REST APIs using Axios.
+
+---
+
+## How to Run
+
+```bash
+git clone https://github.com/menglanyan/inventory-management-system-frontend.git
+cd inventory-management-system-frontend
+npm install
+npm start
+```
+
+App runs on:  
+http://localhost:3000  
+
+---
+
+## Notes
+
+This project is part of a full-stack system.
+
+The backend repository contains the main system design and engineering logic, including:
+- transaction handling  
+- idempotency  
+- deployment pipeline  
